@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:globalchat/controllers/login_controller.dart';
-import 'package:globalchat/controllers/signup_controller.dart';
 import 'package:globalchat/screens/signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -100,7 +99,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             builder: (context) => SignupScreen())),
                     child: Text("Signup here!",
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.bold)),
+                            color: Color.fromARGB(255, 10, 194, 236),
+                            fontWeight: FontWeight.bold)),
                   ),
                 ],
               ),
