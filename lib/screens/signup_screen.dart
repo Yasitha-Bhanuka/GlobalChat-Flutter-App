@@ -10,6 +10,9 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   var userForm = GlobalKey<FormState>();
 
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,6 +26,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             children: [
               TextFormField(
+                controller: emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Email is required";
@@ -36,6 +40,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 23,
               ),
               TextFormField(
+                controller: passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "Password is required";
