@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:globalchat/provider/user_provider.dart';
+import 'package:globalchat/screens/edit_profile_screen.dart';
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -39,7 +38,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SizedBox(height: 5),
             Text(userProvider.userEmail),
             SizedBox(height: 5),
-            ElevatedButton(onPressed: () {}, child: Text("Edit Profile")),
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return EditProfileScreen();
+                  }));
+                },
+                child: Text("Edit Profile")),
           ],
         ),
       ),
