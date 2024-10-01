@@ -21,6 +21,11 @@ class _SignupScreenState extends State<SignupScreen> {
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
 
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (context) {
+        return DashboardScreen();
+      }), (route) => false);
+
       print("Account is created successfully");
     } catch (e) {
       SnackBar messageSnackBar = SnackBar(
@@ -47,6 +52,7 @@ class _SignupScreenState extends State<SignupScreen> {
           child: Column(
             children: [
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: emailController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
@@ -61,6 +67,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 height: 23,
               ),
               TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: passwordController,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
