@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:globalchat/firebase_options.dart';
+import 'firebase_options.dart';
 import 'package:globalchat/screens/splash_screen.dart';
 
 Future<void> main() async {
@@ -27,7 +27,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       theme: ThemeData(
         // when the theme is dark, the text color will be white. we cant use ThemeData.dark() because it will change the background color to black.
-        brightness: Brightness.dark,
+        brightness: Brightness.light,
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),

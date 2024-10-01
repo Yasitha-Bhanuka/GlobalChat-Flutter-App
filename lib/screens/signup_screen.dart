@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatefulWidget {
@@ -12,6 +13,17 @@ class _SignupScreenState extends State<SignupScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+
+  Future<void> createAccount() async {
+    try {
+      // create account
+      await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: emailController.text, password: passwordController.text);
+      print("Account is created successfully");
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +72,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   onPressed: () {
                     if (userForm.currentState!.validate()) {
                       // create account
+                      createAccount();
                     }
                   },
                   child: Text("Create an account"))
