@@ -24,8 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 100),
               SizedBox(
                 height: 150,
                 width: 150,
@@ -70,6 +70,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Expanded(
                     child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            minimumSize: Size(0, 50),
+                            foregroundColor: Colors.white,
+                            backgroundColor:
+                                const Color.fromARGB(255, 10, 194, 236)),
                         onPressed: () {
                           if (userForm.currentState!.validate()) {
                             // create account
