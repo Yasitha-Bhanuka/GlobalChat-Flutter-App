@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:globalchat/screens/profile_screen.dart';
 import 'package:globalchat/screens/splash_screen.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -37,7 +38,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ListTile(
                 onTap: () async {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
-                    return SplashScreen();
+                    return ProfileScreen();
                   }));
                 },
                 leading: Icon(Icons.people),
