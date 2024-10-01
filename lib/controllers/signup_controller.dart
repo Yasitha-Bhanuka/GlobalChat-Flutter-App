@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:globalchat/screens/dashboard_screen.dart';
@@ -13,6 +14,25 @@ class SignupController {
       // create account
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController, password: passwordController);
+
+      var userId = FirebaseAuth.instance.currentUser!
+          .uid; // get user id from firebase auth instance and store it in userId variable. ! is used to check if the user is not null and then get the uid from it. If the user is null, it will throw an error.
+      var db = FirebaseFirestore.instance; // get firestore instance
+
+      // create a map of data to store in the users collection
+      Map<String, dynamic> data = {
+        "name": nameController,
+        "country": countryController,
+        "email": emailController,
+        "id": userId
+      };
+
+      try {
+        // store the data in the users collection in firestore
+        await db.collection("users").doc(userId.toString()).set(data);
+      } catch (e) {
+        print(e);
+      }
 
       Navigator.pushAndRemoveUntil(context,
           MaterialPageRoute(builder: (context) {

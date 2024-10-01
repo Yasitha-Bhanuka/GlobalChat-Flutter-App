@@ -39,7 +39,7 @@ class _SignupScreenState extends State<SignupScreen> {
                           child: Image.asset("assets/images/logo.png")),
                       TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: emailController,
+                        controller: nameController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Name is required";
@@ -54,7 +54,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                       TextFormField(
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: emailController,
+                        controller: countryController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return "Country is required";
