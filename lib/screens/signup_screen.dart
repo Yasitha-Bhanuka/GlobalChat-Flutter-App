@@ -8,37 +8,58 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  var userForm = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("SignUp"),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: Column(
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                label: Text("Email"),
+      body: Form(
+        key: userForm,
+        child: Padding(
+          padding: const EdgeInsets.all(12.0),
+          child: Column(
+            children: [
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Email is required";
+                  }
+                },
+                decoration: InputDecoration(
+                  label: Text("Email"),
+                ),
               ),
-            ),
-            SizedBox(
-              height: 23,
-            ),
-            TextField(
-              obscureText: true,
-              enableSuggestions: false,
-              autocorrect: false,
-              decoration: InputDecoration(
-                label: Text("Password"),
+              SizedBox(
+                height: 23,
               ),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            ElevatedButton(onPressed: () {}, child: Text("Create an account"))
-          ],
+              TextFormField(
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Password is required";
+                  }
+                },
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: InputDecoration(
+                  label: Text("Password"),
+                ),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    if (userForm.currentState!.validate()) {
+                      // create account
+                    }
+                  },
+                  child: Text("Create an account"))
+            ],
+          ),
         ),
       ),
     );
