@@ -19,15 +19,20 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Login"),
-      ),
       body: Form(
         key: userForm,
         child: Padding(
           padding: const EdgeInsets.all(12.0),
           child: Column(
             children: [
+              SizedBox(height: 100),
+              SizedBox(
+                height: 150,
+                width: 150,
+                child: Image.asset(
+                  "assets/images/logo.png",
+                ),
+              ),
               TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: emailController,
@@ -61,17 +66,23 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(
                 height: 30,
               ),
-              ElevatedButton(
-                  onPressed: () {
-                    if (userForm.currentState!.validate()) {
-                      // create account
-                      LoginController.login(
-                          context: context,
-                          emailController: emailController.text,
-                          passwordController: passwordController.text);
-                    }
-                  },
-                  child: Text("Login")),
+              Row(
+                children: [
+                  Expanded(
+                    child: ElevatedButton(
+                        onPressed: () {
+                          if (userForm.currentState!.validate()) {
+                            // create account
+                            LoginController.login(
+                                context: context,
+                                emailController: emailController.text,
+                                passwordController: passwordController.text);
+                          }
+                        },
+                        child: Text("Login")),
+                  ),
+                ],
+              ),
               SizedBox(height: 20),
               Row(
                 children: [
