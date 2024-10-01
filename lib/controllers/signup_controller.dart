@@ -6,7 +6,9 @@ class SignupController {
   static Future<void> createAccount(
       {required BuildContext context,
       required String emailController,
-      required String passwordController}) async {
+      required String passwordController,
+      required String nameController,
+      required String countryController}) async {
     try {
       // create account
       await FirebaseAuth.instance.createUserWithEmailAndPassword(

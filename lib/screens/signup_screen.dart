@@ -13,6 +13,8 @@ class _SignupScreenState extends State<SignupScreen> {
 
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController countryController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,36 @@ class _SignupScreenState extends State<SignupScreen> {
                   height: 150,
                   width: 150,
                   child: Image.asset("assets/images/logo.png")),
+              TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Name is required";
+                  }
+                },
+                decoration: InputDecoration(
+                  label: Text("Name"),
+                ),
+              ),
+              SizedBox(
+                height: 23,
+              ),
+              TextFormField(
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                controller: emailController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Country is required";
+                  }
+                },
+                decoration: InputDecoration(
+                  label: Text("Country"),
+                ),
+              ),
+              SizedBox(
+                height: 23,
+              ),
               TextFormField(
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 controller: emailController,
@@ -78,15 +110,14 @@ class _SignupScreenState extends State<SignupScreen> {
                             SignupController.createAccount(
                                 context: context,
                                 emailController: emailController.text,
-                                passwordController: passwordController.text);
+                                passwordController: passwordController.text,
+                                nameController: nameController.text,
+                                countryController: countryController.text);
                           }
                         },
                         child: Text("Create an account")),
                   ),
                 ],
-              ),
-              SizedBox(
-                height: 50,
               ),
             ],
           ),
