@@ -39,12 +39,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: Text("Profile"),
       ),
-      body: Center(
-        child: Column(
-          children: [
-            Text("Profile Screen"),
-          ],
-        ),
+      body: Column(
+        children: [
+          Text(userData?["name"] ?? ""),
+          Text(userData?["country"] ?? ""),
+          Text(userData?["email"] ?? ""),
+        ],
       ),
     );
   }
