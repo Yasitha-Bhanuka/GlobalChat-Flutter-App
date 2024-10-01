@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:globalchat/screens/dashboard_screen.dart';
 import 'package:globalchat/screens/login_screen.dart';
@@ -10,12 +11,16 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  var user = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
-//Check the logging status of the user
-//If the user is logged in, navigate to the DashboardScreen
-    Future.delayed(Duration(seconds: 5), () {
-      openLogin();
+    Future.delayed(Duration(seconds: 2), () {
+      if (user != null) {
+        openDashboard();
+      } else {
+        openLogin();
+      }
     });
 
     // TODO: implement initState
