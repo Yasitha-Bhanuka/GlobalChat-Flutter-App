@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:globalchat/provider/user_provider.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 import 'package:globalchat/screens/splash_screen.dart';
 
@@ -11,7 +13,8 @@ Future<void> main() async {
       options: DefaultFirebaseOptions
           .currentPlatform); // Initialize Firebase with the default options for the current platform.
 
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => UserProvider(), child: MyApp()));
 }
 
 class MyApp extends StatefulWidget {
