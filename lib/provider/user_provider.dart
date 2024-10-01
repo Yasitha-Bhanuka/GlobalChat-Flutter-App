@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class UserProvider extends ChangeNotifier {
   String userName = "";
   String userCountry = "";
-  String usereEmail = "";
+  String userEmail = "";
   String userId = "";
 
   var db = FirebaseFirestore.instance;
@@ -18,7 +18,7 @@ class UserProvider extends ChangeNotifier {
         .then((dataSnapshot) {
       userName = dataSnapshot.data()?["name"] ?? "";
       userCountry = dataSnapshot.data()?["country"] ?? "";
-      usereEmail = dataSnapshot.data()?["email"] ?? "";
+      userEmail = dataSnapshot.data()?["email"] ?? "";
       userId = dataSnapshot.data()?["id"] ?? "";
       notifyListeners();
     });

@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:globalchat/provider/user_provider.dart';
 import 'package:globalchat/screens/profile_screen.dart';
 import 'package:globalchat/screens/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -14,6 +16,8 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   var user = FirebaseAuth.instance.currentUser;
   var db = FirebaseFirestore.instance;
+
+  var ScaffoldKey = GlobalKey<ScaffoldState>();
 
   List<Map<String, dynamic>> chatRoomsList = [];
 
@@ -35,14 +39,51 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
+
     return Scaffold(
-        appBar: AppBar(title: Text("Global Chat")),
+        key: ScaffoldKey,
+        appBar: AppBar(
+            title: Text("Global Chat"),
+            leading: InkWell(
+              onTap: () {
+                ScaffoldKey.currentState!.openDrawer(); // open drawer
+              },
+              child: Padding(
+                padding: const EdgeInsets.all(6.0),
+                child: CircleAvatar(
+                  child: Text(userProvider.userName[0].toUpperCase()),
+                ),
+              ),
+            )),
         drawer: Drawer(
           child: Container(
             child: Column(
               children: [
                 SizedBox(
                   height: 50,
+                ),
+                ListTile(
+                  onTap: () async {
+                    // logout
+                  },
+                  leading: CircleAvatar(
+                      child: Text(userProvider.userName[0].toUpperCase())),
+                  title: Text(
+                    userProvider.userName,
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  subtitle: Text(userProvider.userEmail),
+                ),
+                ListTile(
+                  onTap: () async {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                      return ProfileScreen();
+                    }));
+                  },
+                  leading: Icon(Icons.people),
+                  title: Text("Profile"),
                 ),
                 ListTile(
                   onTap: () async {
@@ -54,16 +95,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   },
                   leading: Icon(Icons.logout),
                   title: Text("Logout"),
-                ),
-                ListTile(
-                  onTap: () async {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return ProfileScreen();
-                    }));
-                  },
-                  leading: Icon(Icons.people),
-                  title: Text("Profile"),
                 )
               ],
             ),
@@ -75,7 +106,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
               String chatRoomName = chatRoomsList[index]["chatroom_name"] ?? "";
 
               return ListTile(
-                leading: CircleAvatar(child: Text(chatRoomName[0])),
+                leading: CircleAvatar(
+                    backgroundColor: Colors.blueGrey[900],
+                    child: Text(
+                      chatRoomName[0],
+                      style: TextStyle(color: Colors.white),
+                    )),
                 title: Text(chatRoomsList[index]["chatroom_name"] ?? ""),
                 subtitle: Text(chatRoomsList[index]["desc"] ?? ""),
               );

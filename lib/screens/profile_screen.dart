@@ -22,7 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         children: [
           Text(userProvider.userName),
           Text(userProvider.userCountry),
-          Text(userProvider.usereEmail),
+          Text(userProvider.userEmail),
         ],
       ),
     );
