@@ -11,6 +11,8 @@ class SignupScreen extends StatefulWidget {
 class _SignupScreenState extends State<SignupScreen> {
   var userForm = GlobalKey<FormState>();
 
+  bool isLoading = false;
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController nameController = TextEditingController();
@@ -109,10 +111,12 @@ class _SignupScreenState extends State<SignupScreen> {
                                     foregroundColor: Colors.white,
                                     backgroundColor:
                                         Color.fromARGB(255, 10, 194, 236)),
-                                onPressed: () {
+                                onPressed: () async {
                                   if (userForm.currentState!.validate()) {
+                                    isLoading = true;
+                                    setState(() {});
                                     // create account
-                                    SignupController.createAccount(
+                                    await SignupController.createAccount(
                                         context: context,
                                         emailController: emailController.text,
                                         passwordController:
@@ -120,9 +124,18 @@ class _SignupScreenState extends State<SignupScreen> {
                                         nameController: nameController.text,
                                         countryController:
                                             countryController.text);
+                                    isLoading = false;
+                                    setState(() {});
                                   }
                                 },
-                                child: Text("Create an account")),
+                                child: isLoading
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: CircularProgressIndicator(
+                                          color: Colors.white,
+                                        ),
+                                      )
+                                    : Text("Create an account")),
                           ),
                         ],
                       ),
