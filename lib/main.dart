@@ -24,7 +24,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Global Chat',
+      theme: ThemeData(
+        // when the theme is dark, the text color will be white. we cant use ThemeData.dark() because it will change the background color to black.
+        brightness: Brightness.dark,
+        useMaterial3: true,
+        fontFamily: 'Poppins',
+      ),
       home: Scaffold(
         appBar: AppBar(
           title: const Text('Global Chat'),
