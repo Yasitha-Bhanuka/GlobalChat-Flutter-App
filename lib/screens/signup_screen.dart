@@ -14,7 +14,33 @@ class _SignupScreenState extends State<SignupScreen> {
       appBar: AppBar(
         title: Text("SignUp"),
       ),
-      body: Center(child: Text("Signup Screen")),
+      body: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                label: Text("Email"),
+              ),
+            ),
+            SizedBox(
+              height: 23,
+            ),
+            TextField(
+              obscureText: true,
+              enableSuggestions: false,
+              autocorrect: false,
+              decoration: InputDecoration(
+                label: Text("Password"),
+              ),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(onPressed: () {}, child: Text("Create an account"))
+          ],
+        ),
+      ),
     );
   }
 }
