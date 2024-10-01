@@ -33,6 +33,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 },
                 leading: Icon(Icons.logout),
                 title: Text("Logout"),
+              ),
+              ListTile(
+                onTap: () async {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return SplashScreen();
+                  }));
+                },
+                leading: Icon(Icons.people),
+                title: Text("Profile"),
               )
             ],
           ),
