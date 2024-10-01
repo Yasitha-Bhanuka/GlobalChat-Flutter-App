@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:globalchat/screens/dashboard_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -19,8 +20,16 @@ class _SignupScreenState extends State<SignupScreen> {
       // create account
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
           email: emailController.text, password: passwordController.text);
+
       print("Account is created successfully");
     } catch (e) {
+      SnackBar messageSnackBar = SnackBar(
+        backgroundColor: Colors.red,
+        content: Text(e.toString()),
+      );
+
+      ScaffoldMessenger.of(context).showSnackBar(messageSnackBar);
+
       print(e);
     }
   }
