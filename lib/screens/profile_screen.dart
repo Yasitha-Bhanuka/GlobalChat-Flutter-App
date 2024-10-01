@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:globalchat/provider/user_provider.dart';
 import 'package:provider/provider.dart';
@@ -18,12 +20,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(
         title: Text("Profile"),
       ),
-      body: Column(
-        children: [
-          Text(userProvider.userName),
-          Text(userProvider.userCountry),
-          Text(userProvider.userEmail),
-        ],
+      body: Container(
+        width: double.infinity, // full width
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              radius: 50,
+              child: Text(userProvider.userName[0]),
+            ),
+            SizedBox(height: 20),
+            Text(
+              userProvider.userName,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 5),
+            Text(userProvider.userCountry),
+            SizedBox(height: 5),
+            Text(userProvider.userEmail),
+            SizedBox(height: 5),
+            ElevatedButton(onPressed: () {}, child: Text("Edit Profile")),
+          ],
+        ),
       ),
     );
   }
