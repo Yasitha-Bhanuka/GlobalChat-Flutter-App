@@ -28,6 +28,7 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
     Map<String, dynamic> messageToSend = {
       "text": messageController.text,
       "send_name": Provider.of<UserProvider>(context, listen: false).userName,
+      "send_id": Provider.of<UserProvider>(context, listen: false).userId,
       "chatroom_id": widget.chatroomId,
       "timestamp": FieldValue.serverTimestamp()
     };
