@@ -46,13 +46,32 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
       required String text,
       required String send_id}) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment:
+          send_id == Provider.of<UserProvider>(context, listen: false).userId
+              ? CrossAxisAlignment.end
+              : CrossAxisAlignment.start,
       children: [
-        Text(
-          sender_name,
-          style: TextStyle(fontWeight: FontWeight.bold),
+        Padding(
+          padding: const EdgeInsets.only(left: 6, right: 6),
+          child: Text(
+            sender_name,
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
         ),
-        Text(text),
+        Container(
+            decoration: BoxDecoration(
+                color: send_id ==
+                        Provider.of<UserProvider>(context, listen: false).userId
+                    ? Colors.green
+                    : Colors.blue,
+                borderRadius: BorderRadius.circular(8)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                text,
+                style: TextStyle(color: Colors.white),
+              ),
+            )),
         SizedBox(
           height: 8,
         )
