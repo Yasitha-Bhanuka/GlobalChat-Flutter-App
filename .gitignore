@@ -3,12 +3,23 @@
 *.log
 *.pyc
 *.swp
+*.swo
 .DS_Store
 .atom/
 .buildlog/
 .history
 .svn/
-migrate_working_dir/
+.migrate_working_dir/
+*.lock
+*.bak
+*.tmp
+*.temp
+*.orig
+*.rej
+*.sublime-project
+*.sublime-workspace
+*.tmproj
+*.tm_properties
 
 # IntelliJ related
 *.iml
@@ -29,7 +40,8 @@ migrate_working_dir/
 .flutter-plugins-dependencies
 .pub-cache/
 .pub/
-/build/
+build/
+.flutter-versions
 
 # Symbolication related
 app.*.symbols
@@ -41,3 +53,15 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase related
+firebase_options.dart
+google-services.json
+GoogleService-Info.plist
+
+# Environment variables
+.env
+
+# User-specific files
+.vscode/
+.idea/

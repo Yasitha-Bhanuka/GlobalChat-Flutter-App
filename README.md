@@ -36,7 +36,7 @@ Here are some resources to help you get started with Flutter:
 
 1. **Clone the repository**:
   ```sh
-  git clone https://github.com/Yasitha-Bhanuka/Flutter-Global-Chat-App-.git
+  git clone https://github.com/Yasitha-Bhanuka/GlobalChat-Flutter-App.git
   cd globalchat
   ```
 
