@@ -33,10 +33,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
     });
   }
 
+  void checkUserAccount() async {
+    if (user != null) {
+      var userDoc = await db.collection("users").doc(user!.uid).get();
+      if (!userDoc.exists) {
+        // User account does not exist, navigate to login page
+        await FirebaseAuth.instance.signOut();
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (context) {
+          return SplashScreen();
+        }), (route) => false);
+      }
+    }
+  }
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    checkUserAccount();
     getChatRooms();
   }
 
@@ -116,8 +131,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 onTap: () {
                   Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return ChatroomScreen(
-                        chatroomName: chatRoomName,
-                        chatroomId: chatRoomIds[index],
+                      chatroomName: chatRoomName,
+                      chatroomId: chatRoomIds[index],
                     );
                   }));
                 },
