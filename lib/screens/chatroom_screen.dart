@@ -49,7 +49,35 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
         body: Column(
           children: [
             Expanded(
-              child: Container(color: Colors.white),
+              child: StreamBuilder(
+                  stream: db
+                      .collection("messages")
+                      .orderBy("timestamp", descending: true)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    var allMessages = snapshot.data?.docs ?? [];
+                    return ListView.builder(
+                        reverse: true,
+                        itemCount: allMessages.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  allMessages[index]["send_name"],
+                                  style: TextStyle(fontWeight: FontWeight.bold),
+                                ),
+                                Text(allMessages[index]["text"]),
+                                SizedBox(
+                                  height: 8,
+                                )
+                              ],
+                            ),
+                          );
+                        });
+                  }),
             ),
             Container(
               color: Colors.grey[200],
