@@ -41,6 +41,25 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
     messageController.clear();
   }
 
+  Widget singleChatItem(
+      {required String sender_name,
+      required String text,
+      required String send_id}) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          sender_name,
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        Text(text),
+        SizedBox(
+          height: 8,
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,19 +87,10 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                         itemBuilder: (context, index) {
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  allMessages[index]["send_name"],
-                                  style: TextStyle(fontWeight: FontWeight.bold),
-                                ),
-                                Text(allMessages[index]["text"]),
-                                SizedBox(
-                                  height: 8,
-                                )
-                              ],
-                            ),
+                            child: singleChatItem(
+                                sender_name: allMessages[index]["send_name"],
+                                text: allMessages[index]["text"],
+                                send_id: allMessages[index]["send_id"]),
                           );
                         });
                   }),
