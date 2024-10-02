@@ -100,6 +100,10 @@ class _ChatroomScreenState extends State<ChatroomScreen> {
                       return Center(child: Text("Some error has occured!"));
                     }
                     var allMessages = snapshot.data?.docs ?? [];
+
+                    if (allMessages.isEmpty) {
+                      return Center(child: Text("No messages yet!"));
+                    }
                     return ListView.builder(
                         reverse: true,
                         itemCount: allMessages.length,
