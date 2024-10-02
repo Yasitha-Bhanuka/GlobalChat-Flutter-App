@@ -23,4 +23,9 @@ class UserProvider extends ChangeNotifier {
       notifyListeners();
     });
   }
+
+  void updateUserName(String newName) {
+    userName = newName;
+    notifyListeners();
+  }
 }

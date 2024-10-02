@@ -36,7 +36,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         .doc(Provider.of<UserProvider>(context, listen: false).userId)
         .update(dataToUpdate);
 
-    Provider.of<UserProvider>(context, listen: false).getUserDetails();
+    Provider.of<UserProvider>(context, listen: false)
+        .updateUserName(nameText.text);
+
     Navigator.pop(context);
   }
 
