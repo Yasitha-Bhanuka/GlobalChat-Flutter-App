@@ -67,7 +67,17 @@ Here are some resources to help you get started with Flutter:
 - **Form Validation**: Implemented form validation for signup and login screens.
 
 ## 📽 ScreenRecorders
+- **Make the user account**
+- **Update the user details**
+- **Logged device next opening navigate to the dashboard**
+- **After logout, App navigate to the login screen**
+https://github.com/user-attachments/assets/c5a5275f-300b-4b3e-800f-449891634fbf
 
+- **Goto the chatrooms and send the message**
+- **Logout and login another account see the chatroom messages**
+- **Send the another message using current account**
+- **Check weather your message and others sended massages wrapping left and right with the senders name**
+https://github.com/user-attachments/assets/d9e87039-ddf2-400b-85ff-1ad3638e7121
 
 ## 📸 Screenshots
 
